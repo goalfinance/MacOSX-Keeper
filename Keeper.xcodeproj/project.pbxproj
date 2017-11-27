@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		171CBBA01FCBDA3200004D69 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBB9F1FCBDA3200004D69 /* AppDelegate.swift */; };
-		171CBBA21FCBDA3300004D69 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBA11FCBDA3300004D69 /* ViewController.swift */; };
 		171CBBA41FCBDA3300004D69 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBA31FCBDA3300004D69 /* Document.swift */; };
 		171CBBA71FCBDA3300004D69 /* Document.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBA51FCBDA3300004D69 /* Document.xcdatamodeld */; };
 		171CBBA91FCBDA3300004D69 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 171CBBA81FCBDA3300004D69 /* Assets.xcassets */; };
 		171CBBAC1FCBDA3300004D69 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 171CBBAA1FCBDA3300004D69 /* Main.storyboard */; };
 		171CBBB81FCBDA3300004D69 /* KeeperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBB71FCBDA3300004D69 /* KeeperTests.swift */; };
 		171CBBC31FCBDA3300004D69 /* KeeperUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBC21FCBDA3300004D69 /* KeeperUITests.swift */; };
+		171CBBD11FCC018100004D69 /* PrimaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBD01FCC018100004D69 /* PrimaryViewController.swift */; };
+		171CBBD31FCC069500004D69 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBD21FCC069500004D69 /* SeparatorView.swift */; };
+		171CBBD61FCC09A800004D69 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBD51FCC09A800004D69 /* Node.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		171CBB9C1FCBDA3200004D69 /* Keeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		171CBB9F1FCBDA3200004D69 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		171CBBA11FCBDA3300004D69 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		171CBBA31FCBDA3300004D69 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		171CBBA61FCBDA3300004D69 /* Document.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Document.xcdatamodel; sourceTree = "<group>"; };
 		171CBBA81FCBDA3300004D69 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,6 +51,9 @@
 		171CBBBE1FCBDA3300004D69 /* KeeperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KeeperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		171CBBC21FCBDA3300004D69 /* KeeperUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeeperUITests.swift; sourceTree = "<group>"; };
 		171CBBC41FCBDA3300004D69 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		171CBBD01FCC018100004D69 /* PrimaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryViewController.swift; sourceTree = "<group>"; };
+		171CBBD21FCC069500004D69 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		171CBBD51FCC09A800004D69 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,14 +104,16 @@
 		171CBB9E1FCBDA3200004D69 /* Keeper */ = {
 			isa = PBXGroup;
 			children = (
+				171CBBD41FCC094400004D69 /* Tree Support */,
 				171CBB9F1FCBDA3200004D69 /* AppDelegate.swift */,
-				171CBBA11FCBDA3300004D69 /* ViewController.swift */,
 				171CBBA31FCBDA3300004D69 /* Document.swift */,
 				171CBBA81FCBDA3300004D69 /* Assets.xcassets */,
 				171CBBAA1FCBDA3300004D69 /* Main.storyboard */,
 				171CBBAD1FCBDA3300004D69 /* Info.plist */,
 				171CBBAE1FCBDA3300004D69 /* Keeper.entitlements */,
 				171CBBA51FCBDA3300004D69 /* Document.xcdatamodeld */,
+				171CBBD01FCC018100004D69 /* PrimaryViewController.swift */,
+				171CBBD21FCC069500004D69 /* SeparatorView.swift */,
 			);
 			path = Keeper;
 			sourceTree = "<group>";
@@ -128,6 +134,14 @@
 				171CBBC41FCBDA3300004D69 /* Info.plist */,
 			);
 			path = KeeperUITests;
+			sourceTree = "<group>";
+		};
+		171CBBD41FCC094400004D69 /* Tree Support */ = {
+			isa = PBXGroup;
+			children = (
+				171CBBD51FCC09A800004D69 /* Node.swift */,
+			);
+			path = "Tree Support";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,7 +278,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				171CBBA71FCBDA3300004D69 /* Document.xcdatamodeld in Sources */,
-				171CBBA21FCBDA3300004D69 /* ViewController.swift in Sources */,
+				171CBBD11FCC018100004D69 /* PrimaryViewController.swift in Sources */,
+				171CBBD61FCC09A800004D69 /* Node.swift in Sources */,
+				171CBBD31FCC069500004D69 /* SeparatorView.swift in Sources */,
 				171CBBA01FCBDA3200004D69 /* AppDelegate.swift in Sources */,
 				171CBBA41FCBDA3300004D69 /* Document.swift in Sources */,
 			);
