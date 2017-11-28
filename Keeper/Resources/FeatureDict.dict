@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>entries</key>
+        <array>
+            <dict>
+                <key>group</key>
+                <string>Security Resources Management</string>
+                <key>entries</key>
+                <array>
+                    <dict>
+                        <key>leaf</key>
+                        <string>Maintain</string>
+                        <key>resource</key>
+                        <string>FOR_TESTING</string>
+                    </dict>
+                </array>
+            </dict>
+            <dict>
+                <key>group</key>
+                <string>Security Users Management</string>
+                <key>entries</key>
+                <array>
+                    <dict>
+                        <key>leaf</key>
+                        <string>Maintain</string>
+                        <key>resource</key>
+                        <string>FOR_TESTING</string>
+                    </dict>
+                </array>
+            </dict>
+            <dict>
+                <key>group</key>
+                <string>Security Roles Management</string>
+                <key>entries</key>
+                <array>
+                    <dict>
+                        <key>leaf</key>
+                        <string>Maintain</string>
+                        <key>resource</key>
+                        <string>FOR_TESTING</string>
+                    </dict>
+                </array>
+            </dict>
+        </array>
+    </dict>
+</plist>

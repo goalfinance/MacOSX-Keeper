@@ -756,7 +756,7 @@
         <!--OutlineViewController-->
         <scene sceneID="8lH-cH-Te0">
             <objects>
-                <viewController storyboardIdentifier="Outline View Controller" id="TGH-Oi-fav" userLabel="OutlineViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Outline View Controller" id="TGH-Oi-fav" userLabel="OutlineViewController" customClass="OutlineViewController" customModule="Keeper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="r5t-lj-wWS">
                         <rect key="frame" x="0.0" y="0.0" width="384" height="430"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -787,7 +787,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <customView id="pgy-Ic-AQx" userLabel="SeparatorView">
+                                                        <customView identifier="Separator" id="pgy-Ic-AQx" userLabel="SeparatorView" customClass="SeparatorView" customModule="Keeper" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="379" height="1"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         </customView>
@@ -821,12 +821,18 @@
                                                                 <constraint firstItem="SoK-PW-JWN" firstAttribute="leading" secondItem="RVI-jK-DfV" secondAttribute="leading" constant="22" id="uIr-af-lqp"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="imageView" destination="RVI-jK-DfV" id="USF-Nu-2yI"/>
                                                                 <outlet property="textField" destination="SoK-PW-JWN" id="Plw-2I-6Qv"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <binding destination="1cP-AQ-i79" name="content" keyPath="arrangedObjects" id="OQn-Fc-SOk"/>
+                                                <binding destination="1cP-AQ-i79" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="OQn-Fc-SOk" id="e5b-Fi-ene"/>
+                                                <outlet property="delegate" destination="TGH-Oi-fav" id="otz-52-LXC"/>
+                                            </connections>
                                         </outlineView>
                                     </subviews>
                                 </clipView>
@@ -847,8 +853,17 @@
                             <constraint firstItem="cyn-PS-sk1" firstAttribute="top" secondItem="r5t-lj-wWS" secondAttribute="top" id="eKM-Bl-Iw2"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="outlineView" destination="d7A-nn-L4R" id="rDC-PY-Q7p"/>
+                        <outlet property="treeController" destination="1cP-AQ-i79" id="If0-IH-YRw"/>
+                    </connections>
                 </viewController>
                 <customObject id="YIk-9c-GmT" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <treeController objectClassName="Node" childrenKeyPath="children" leafKeyPath="isLeaf" id="1cP-AQ-i79" userLabel="OutlineController">
+                    <connections>
+                        <binding destination="TGH-Oi-fav" name="contentArray" keyPath="contents" id="JCc-DA-AIj"/>
+                    </connections>
+                </treeController>
             </objects>
             <point key="canvasLocation" x="693" y="1026"/>
         </scene>

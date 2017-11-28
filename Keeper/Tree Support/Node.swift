@@ -15,13 +15,34 @@ enum NodeType {
 }
 
 class Node:NSObject{
+    static var untitledName:String{
+        return "UntitledName"
+    }
+    
+    static var undefinedResource:String{
+        return "UndefinedResource"
+    }
+    
     var nodeTitle:String!
-    var nodeIcon:NSImage!
+    var nodeIcon:NSImage?{
+        switch self.nodeType{
+        case .Group:
+            return nil
+        case .Folder:
+            let image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIconResource)))
+            return image
+        case .Leaf:
+            let image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericStationeryIcon)))
+            return image
+        case .Separator:
+            return nil
+        }
+    }
     var nodeType:NodeType = NodeType.Leaf
-    var children:[Node] = [Node]()
+    @objc var children:[Node] = [Node]()
     var resource:String?
     
-    var isLeaf:Bool{
+    @objc var isLeaf:Bool{
         get{
             if self.nodeType == NodeType.Leaf{
                 return true
@@ -61,7 +82,7 @@ class Node:NSObject{
         }
     }
     
-    init(withTitle nodeTitle:String, nodeType:NodeType, resource:String){
+    init(withTitle nodeTitle:String, nodeType:NodeType, resource:String?){
         self.nodeTitle = nodeTitle
         self.resource = resource
         self.nodeType = nodeType
