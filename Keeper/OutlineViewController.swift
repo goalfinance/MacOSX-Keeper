@@ -95,7 +95,7 @@ class OutlineViewController:NSViewController{
                 self.selectParentFromSelection()
             }
             
-            //There are some unnecesary codes. I've thought to use recursive call, but for worrying about the endless loop, I give it up.
+            //There are some unnecesary codes. I've thought to use recursive call, but for worrying about the endless loop, so I give it up.
             if self.treeController.selectedObjects.count == 0{
                 //No selection, so add the node on the root in turn.
                 let indexPath = IndexPath.init(index: self.contents.count)
