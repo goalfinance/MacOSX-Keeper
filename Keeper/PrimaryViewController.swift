@@ -8,6 +8,15 @@
 
 import Cocoa
 
-class PrimaryViewController:NSViewController{
+class PrimaryViewController:NSViewController{    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        var d = self.view.window?.windowController?.document!
+
+    }
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        var d = self.view.window?.windowController?.document!
+    }
     
 }
