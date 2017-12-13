@@ -956,7 +956,7 @@
         <!--ResourceGroupEditViewController-->
         <scene sceneID="L33-gj-NCb">
             <objects>
-                <viewController id="ig5-89-2Du" userLabel="ResourceGroupEditViewController" sceneMemberID="viewController">
+                <viewController id="ig5-89-2Du" userLabel="ResourceGroupEditViewController" customClass="ResourceGroupEditViewController" customModule="Keeper" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="bNo-Ww-Bz6">
                         <rect key="frame" x="0.0" y="0.0" width="367" height="133"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -979,7 +979,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSg-s5-5gc">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSg-s5-5gc" userLabel="NameTextField">
                                 <rect key="frame" x="95" y="91" width="240" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="TXI-fV-yQf">
@@ -987,6 +987,9 @@
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="ig5-89-2Du" id="oEq-je-H2w"/>
+                                </connections>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bI7-PO-XJP">
                                 <rect key="frame" x="260" y="7" width="81" height="32"/>
@@ -995,6 +998,9 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="doneWithSender:" target="ig5-89-2Du" id="8KS-2E-0HK"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X79-eL-ueV">
                                 <rect key="frame" x="175" y="7" width="81" height="32"/>
@@ -1006,6 +1012,9 @@
 Gw
 </string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="cancelWithSender:" target="ig5-89-2Du" id="fr6-IL-D9d"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="xKX-ea-U0A" userLabel="Yes">
                                 <rect key="frame" x="94" y="56" width="68" height="18"/>
@@ -1025,6 +1034,12 @@ Gw
                             </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="doneButton" destination="bI7-PO-XJP" id="Gen-cY-KxO"/>
+                        <outlet property="nameField" destination="sSg-s5-5gc" id="rVk-Mp-Uwc"/>
+                        <outlet property="noRadioButton" destination="hAo-Ai-AC7" id="dDU-Gv-R2m"/>
+                        <outlet property="yesRadioButton" destination="xKX-ea-U0A" id="d8B-ai-ovS"/>
+                    </connections>
                 </viewController>
                 <customObject id="PJR-4L-l2j" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
