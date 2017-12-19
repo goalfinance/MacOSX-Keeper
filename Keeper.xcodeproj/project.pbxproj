@@ -20,8 +20,8 @@
 		171CBBD31FCC069500004D69 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBD21FCC069500004D69 /* SeparatorView.swift */; };
 		171CBBD61FCC09A800004D69 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171CBBD51FCC09A800004D69 /* Node.swift */; };
 		173032AE1FDF8BD90053471E /* ResourceMaintainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173032AD1FDF8BD90053471E /* ResourceMaintainViewController.swift */; };
-		173032B01FDFA0DB0053471E /* ResourceGroupOutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173032AF1FDFA0DB0053471E /* ResourceGroupOutlineViewController.swift */; };
 		173032B21FDFD5F20053471E /* ResourceGroupEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173032B11FDFD5F20053471E /* ResourceGroupEditViewController.swift */; };
+		17B378BE1FE8E12500E1E2BB /* ResourceGroupOutlineViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B378BD1FE8E12500E1E2BB /* ResourceGroupOutlineViewDelegate.swift */; };
 		17EC9E781FCCF30A0070ADBA /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC9E771FCCF30A0070ADBA /* OutlineViewController.swift */; };
 		17EC9E7B1FCD07C40070ADBA /* FeatureDict.dict in Resources */ = {isa = PBXBuildFile; fileRef = 17EC9E7A1FCD07C40070ADBA /* FeatureDict.dict */; };
 		17EC9E7D1FCD25FE0070ADBA /* OutlineViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC9E7C1FCD25FE0070ADBA /* OutlineViewControllerDelegate.swift */; };
@@ -65,8 +65,8 @@
 		171CBBD21FCC069500004D69 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		171CBBD51FCC09A800004D69 /* Node.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		173032AD1FDF8BD90053471E /* ResourceMaintainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceMaintainViewController.swift; sourceTree = "<group>"; };
-		173032AF1FDFA0DB0053471E /* ResourceGroupOutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceGroupOutlineViewController.swift; sourceTree = "<group>"; };
 		173032B11FDFD5F20053471E /* ResourceGroupEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceGroupEditViewController.swift; sourceTree = "<group>"; };
+		17B378BD1FE8E12500E1E2BB /* ResourceGroupOutlineViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceGroupOutlineViewDelegate.swift; sourceTree = "<group>"; };
 		17EC9E771FCCF30A0070ADBA /* OutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
 		17EC9E7A1FCD07C40070ADBA /* FeatureDict.dict */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = FeatureDict.dict; sourceTree = "<group>"; };
 		17EC9E7C1FCD25FE0070ADBA /* OutlineViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -170,8 +170,8 @@
 			isa = PBXGroup;
 			children = (
 				173032AD1FDF8BD90053471E /* ResourceMaintainViewController.swift */,
-				173032AF1FDFA0DB0053471E /* ResourceGroupOutlineViewController.swift */,
 				173032B11FDFD5F20053471E /* ResourceGroupEditViewController.swift */,
+				17B378BD1FE8E12500E1E2BB /* ResourceGroupOutlineViewDelegate.swift */,
 			);
 			path = SecurityResource;
 			sourceTree = "<group>";
@@ -323,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17B378BE1FE8E12500E1E2BB /* ResourceGroupOutlineViewDelegate.swift in Sources */,
 				1706057D1FD161DE0083879C /* SplitViewController.swift in Sources */,
 				17EC9E7D1FCD25FE0070ADBA /* OutlineViewControllerDelegate.swift in Sources */,
 				173032AE1FDF8BD90053471E /* ResourceMaintainViewController.swift in Sources */,
@@ -331,7 +332,6 @@
 				171CBBD11FCC018100004D69 /* PrimaryViewController.swift in Sources */,
 				171CBBD61FCC09A800004D69 /* Node.swift in Sources */,
 				170605321FD0EA450083879C /* WindowController.swift in Sources */,
-				173032B01FDFA0DB0053471E /* ResourceGroupOutlineViewController.swift in Sources */,
 				171CBBD31FCC069500004D69 /* SeparatorView.swift in Sources */,
 				171CBBA01FCBDA3200004D69 /* AppDelegate.swift in Sources */,
 				17EC9E781FCCF30A0070ADBA /* OutlineViewController.swift in Sources */,
