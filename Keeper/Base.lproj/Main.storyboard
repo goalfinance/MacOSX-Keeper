@@ -1154,22 +1154,6 @@
                         <outlet property="treeController" destination="Fce-hm-MBh" id="bYu-4Z-PCn"/>
                     </connections>
                 </viewController>
-                <tableColumn identifier="" width="95" minWidth="40" maxWidth="1000" id="Mo9-nb-BKs" userLabel="uri">
-                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="URI">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                    </tableHeaderCell>
-                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="qMY-q6-o1s">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
-                    <connections>
-                        <binding destination="Yv2-JK-S4X" name="value" keyPath="arrangedObjects.uri" id="m7R-9o-tUl"/>
-                    </connections>
-                </tableColumn>
                 <customObject id="06H-Id-m79" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Resource" id="Yv2-JK-S4X" userLabel="ResourceArrayController"/>
                 <treeController mode="entity" entityName="ResourceGroup" childrenKeyPath="children" id="Fce-hm-MBh" userLabel="ResourceGroupTreeController">
