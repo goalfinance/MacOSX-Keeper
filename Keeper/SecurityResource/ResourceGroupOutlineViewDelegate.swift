@@ -37,7 +37,8 @@ extension ResourceMaintainViewController:NSOutlineViewDelegate{
             
             if let resourceGroup = self.item2ResourceGroup(item: item){
                 tableCellView?.textField?.stringValue = resourceGroup.value(forKey: "name") as! String
-                tableCellView?.imageView?.image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIconResource)))
+//                tableCellView?.imageView?.image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIconResource)))
+                tableCellView?.imageView?.image = nil
                 
                 return tableCellView
             }else{
@@ -45,6 +46,21 @@ extension ResourceMaintainViewController:NSOutlineViewDelegate{
             }
         }else{
             return nil
+        }
+    }
+    
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        if treeController.selectedObjects.count > 0 {
+            let selectedObj = treeController.selectedObjects[0]
+            let selectedResourceGroup = selectedObj as! ResourceGroup
+            if let resources = selectedResourceGroup.resources{
+                self.arrayController.content = resources
+            }else{
+                self.arrayController.content = NSArray();
+            }
+            
+        }else{
+            
         }
     }
     
