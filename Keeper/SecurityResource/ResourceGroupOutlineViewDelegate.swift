@@ -9,6 +9,7 @@
 import Cocoa
 
 extension ResourceMaintainViewController:NSOutlineViewDelegate{
+    
     func item2ResourceGroup(item:Any) -> ResourceGroup?{
         if item is NSTreeNode{
             let treeNode = item as! NSTreeNode
@@ -51,16 +52,23 @@ extension ResourceMaintainViewController:NSOutlineViewDelegate{
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
         if treeController.selectedObjects.count > 0 {
+            self.resourceGroupEditableState()
+            
             let selectedObj = treeController.selectedObjects[0]
             let selectedResourceGroup = selectedObj as! ResourceGroup
             if let resources = selectedResourceGroup.resources{
                 self.arrayController.content = resources
+                if resources.count > 0 {
+                    self.resourceEditableState()
+                }else{
+                    self.resourceInitialState()
+                }
             }else{
                 self.arrayController.content = NSArray();
+                self.resourceInitialState()
             }
             
         }else{
-            
         }
     }
     

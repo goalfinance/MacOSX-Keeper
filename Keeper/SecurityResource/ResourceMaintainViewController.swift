@@ -11,6 +11,8 @@ import Cocoa
 let RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER =
     NSStoryboard.SceneIdentifier.init(rawValue: "ResourceGroupEditWindowController")
 
+let RESOURCE_EDIT_WINDOW_CONTROLLER = NSStoryboard.SceneIdentifier.init("ResourceEditWindowController")
+
 class ResourceGroupValueObject{
     var name:String!
     var available:Bool = true
@@ -28,14 +30,22 @@ class ResourceMaintainViewController:NSViewController{
     @IBOutlet var arrayController:NSArrayController!
     @IBOutlet var tableView:NSTableView!
     
+    @IBOutlet var addButtonResourceGroup:NSButton!
+    @IBOutlet var removeButtonResourceGroup:NSButton!
+    @IBOutlet var addButtonResource:NSButton!
+    @IBOutlet var removeButtonResource:NSButton!
+    
     var manangedObjectContext:NSManagedObjectContext!
-    var editWindowController:NSWindowController!
+    var resourceGroupEditWindowController:NSWindowController!
+    var resourceEditWindowController:NSWindowController!
     
     @objc var content:[ResourceGroup] = [ResourceGroup]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.editWindowController = NSStoryboard.main!.instantiateController(withIdentifier: RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER) as! NSWindowController
+        self.resourceGroupEditWindowController = NSStoryboard.main!.instantiateController(withIdentifier: RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER) as! NSWindowController
+        
+        self.resourceEditWindowController = self.storyboard?.instantiateController(withIdentifier: RESOURCE_EDIT_WINDOW_CONTROLLER) as! NSWindowController
     }
     
     override func viewWillAppear() {
@@ -46,18 +56,16 @@ class ResourceMaintainViewController:NSViewController{
         fetchRequest.predicate = NSPredicate(format: "parent = nil")
         do {
             self.treeController.content = try self.manangedObjectContext.fetch(fetchRequest)
+            self.resourceGroupInitialState()
         }catch{
             
         }
-            
-     
     }
     
     func performAddingResourceGroup(valueObject:ResourceGroupValueObject){
         let newResourceGroup = NSEntityDescription.insertNewObject(forEntityName: "ResourceGroup", into: self.manangedObjectContext)
         newResourceGroup.setValue(valueObject.name, forKey: "name")
         newResourceGroup.setValue(valueObject.available, forKey: "available")
-        //newResourceGroup.setValue(NSMutableArray(), forKey: "Resources")
         
         if self.treeController.selectedObjects.count == 0{
             let indexPath = IndexPath.init(index: self.content.count)
@@ -88,9 +96,9 @@ class ResourceMaintainViewController:NSViewController{
     }
     
     @IBAction func addResourceGroup(sender:NSButton){
-        let editViewController = editWindowController.contentViewController as! ResourceGroupEditViewController
-        view.window!.beginSheet(editWindowController.window!) { (modelResponse) in
-            if modelResponse == NSApplication.ModalResponse.OK{
+        let editViewController = resourceGroupEditWindowController.contentViewController as! ResourceGroupEditViewController
+        view.window!.beginSheet(resourceGroupEditWindowController.window!) { (modalResponse) in
+            if modalResponse == NSApplication.ModalResponse.OK{
                 let valueObject = ResourceGroupValueObject()
                 valueObject.name = editViewController.savedValues[RESOURCE_GROUP_SAVED_VALUES_NAME] as! String
                 if let isAvailable = editViewController.savedValues[RESOURCE_GROUP_SAVED_VALUES_IS_VAILABLE] as? Bool{
@@ -100,18 +108,44 @@ class ResourceMaintainViewController:NSViewController{
                 self.performAddingResourceGroup(valueObject: valueObject)
             }
         }
-//        let valueObject = ResourceGroupValueObject()
-//        valueObject.name = "test"
-//        valueObject.available = true
-//        self.performAddingResourceGroup(valueObject: valueObject)
     }
     
     @IBAction func addResource(sender:NSButton){
-        let resourceVO = ResourceValueObject()
-        resourceVO.name = "test"
-        resourceVO.uri = "testURI"
-        self.performAddingResource(valueObject: resourceVO)
+        let editWindowController = self.resourceEditWindowController.contentViewController as! ResourceEditViewController
+        
+        self.view.window!.beginSheet(resourceEditWindowController.window!) { (modalResponse) in
+            if modalResponse == NSApplication.ModalResponse.OK{
+                let resourceVO = ResourceValueObject()
+                resourceVO.name = editWindowController.savedValues[RESOURCE_SAVED_VALUES_NAME] as! String
+                resourceVO.uri = editWindowController.savedValues[RESOURCE_SAVED_VALUES_URI] as! String
+                let isAvailable = editWindowController.savedValues[RESOURCE_SAVED_VALUES_AVAILABLE] as! Bool
+                resourceVO.available = isAvailable
+                
+                self.performAddingResource(valueObject: resourceVO)
+                self.resourceEditableState()
+            }
+            
+        }
     }
     
+    func resourceGroupInitialState(){
+        self.addButtonResourceGroup.isEnabled = true
+        self.removeButtonResourceGroup.isEnabled = false
+    }
+    
+    func resourceGroupEditableState(){
+        self.addButtonResource.isEnabled = true
+        self.removeButtonResourceGroup.isEnabled = true
+    }
+    
+    func resourceInitialState(){
+        self.addButtonResource.isEnabled = true
+        self.removeButtonResource.isEnabled = false
+    }
+    
+    func resourceEditableState(){
+        self.addButtonResource.isEnabled = true
+        self.removeButtonResource.isEnabled = true
+    }
     
 }
