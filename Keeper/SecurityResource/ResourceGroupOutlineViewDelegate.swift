@@ -9,21 +9,7 @@
 import Cocoa
 
 extension ResourceMaintainViewController:NSOutlineViewDelegate{
-    
-    func item2ResourceGroup(item:Any) -> ResourceGroup?{
-        if item is NSTreeNode{
-            let treeNode = item as! NSTreeNode
-            if treeNode.representedObject is ResourceGroup{
-                let resourceGroupOfItem = treeNode.representedObject as! ResourceGroup
-                return resourceGroupOfItem
-            }else{
-                return nil
-            }
-        }else{
-            return nil
-        }
-    }
-    
+
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
         return false
     }

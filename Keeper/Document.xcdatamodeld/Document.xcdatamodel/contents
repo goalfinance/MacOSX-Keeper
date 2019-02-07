@@ -11,7 +11,7 @@
         <attribute name="available" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="parent" inverseEntity="ResourceGroup" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="parent" inverseEntity="ResourceGroup" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="children" inverseEntity="ResourceGroup" syncable="YES"/>
         <relationship name="resources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="group" inverseEntity="Resource" syncable="YES"/>
     </entity>

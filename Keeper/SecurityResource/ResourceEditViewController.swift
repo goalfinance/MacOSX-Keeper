@@ -12,7 +12,7 @@ let RESOURCE_SAVED_VALUES_NAME = "name"
 let RESOURCE_SAVED_VALUES_URI = "uri"
 let RESOURCE_SAVED_VALUES_AVAILABLE = "available"
 
-class ResourceEditViewController:NSViewController{
+class ResourceEditViewController:NSViewController, NSControlTextEditingDelegate{
     var savedValues:[String:AnyObject] = [String:AnyObject]()
     
     @IBOutlet var yesRadioButton:NSButton!
@@ -89,7 +89,7 @@ class ResourceEditViewController:NSViewController{
         doneButton.isEnabled = self.doneAllowed()
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         doneButton.isEnabled = self.doneAllowed()
     }
 }

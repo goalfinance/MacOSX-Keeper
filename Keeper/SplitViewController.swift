@@ -8,7 +8,7 @@
 
 import Cocoa
 
-let VIEW_CONTROLLER_FOR_TEST = NSStoryboard.SceneIdentifier.init(rawValue: "ResourceMaintainViewController")
+let VIEW_CONTROLLER_FOR_TEST = NSStoryboard.SceneIdentifier.init("ResourceMaintainViewController")
 
 class SplitViewController:NSSplitViewController{
     
@@ -27,7 +27,7 @@ class SplitViewController:NSSplitViewController{
     func embedChildViewController4Test(){
         let currentDetailViewController = self.detailViewController()
         let childViewController4Test = self.viewController4Test()
-        currentDetailViewController.addChildViewController(childViewController4Test)
+        currentDetailViewController.addChild(childViewController4Test)
         currentDetailViewController.view.addSubview(childViewController4Test.view)
         let views:[String:Any] = ["targetView":childViewController4Test.view]
         let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|targetView|", options: NSLayoutConstraint.FormatOptions.init(rawValue: 0), metrics: nil, views: views)

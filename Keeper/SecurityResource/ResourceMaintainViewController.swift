@@ -9,7 +9,7 @@
 import Cocoa
 
 let RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER =
-    NSStoryboard.SceneIdentifier.init(rawValue: "ResourceGroupEditWindowController")
+    NSStoryboard.SceneIdentifier.init("ResourceGroupEditWindowController")
 
 let RESOURCE_EDIT_WINDOW_CONTROLLER = NSStoryboard.SceneIdentifier.init("ResourceEditWindowController")
 
@@ -39,26 +39,63 @@ class ResourceMaintainViewController:NSViewController{
     var resourceGroupEditWindowController:NSWindowController!
     var resourceEditWindowController:NSWindowController!
     
-    @objc var content:[ResourceGroup] = [ResourceGroup]()
+    @objc var content:[ResourceGroup]!
+    var draggedNodes:[Any]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.resourceGroupEditWindowController = NSStoryboard.main!.instantiateController(withIdentifier: RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER) as! NSWindowController
+        self.resourceGroupEditWindowController = NSStoryboard.main!.instantiateController(withIdentifier: RESOURCE_GROUP_EDIT_WINDOW_CONTROLLER) as? NSWindowController
         
-        self.resourceEditWindowController = self.storyboard?.instantiateController(withIdentifier: RESOURCE_EDIT_WINDOW_CONTROLLER) as! NSWindowController
+        self.resourceEditWindowController = self.storyboard?.instantiateController(withIdentifier: RESOURCE_EDIT_WINDOW_CONTROLLER) as? NSWindowController
+        self.outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType.init(kNodesPBoardType)])
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         self.manangedObjectContext = self.view.window!.windowController!.document!.managedObjectContext
      
+        let sortDescriptor = NSSortDescriptor.init(key: "idx", ascending: true)
+        self.treeController.sortDescriptors = [sortDescriptor]
+        
         let fetchRequest = NSFetchRequest<ResourceGroup>(entityName: "ResourceGroup")
         fetchRequest.predicate = NSPredicate(format: "parent = nil")
+        fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-            self.treeController.content = try self.manangedObjectContext.fetch(fetchRequest)
+            self.content = try self.manangedObjectContext.fetch(fetchRequest)
+            self.treeController.content = self.content
             self.resourceGroupInitialState()
         }catch{
             
+        }
+    }
+    
+    func getSortIdx(count:Int) -> Int{
+        return (count + 1) * 2
+    }
+    
+    func sortIdxAfterDragged(newIndex:Int) -> Int{
+        return (newIndex + 1) * 2 - 1
+    }
+    
+    func item2ResourceGroup(item:Any) -> ResourceGroup?{
+        if item is NSTreeNode{
+            let treeNode = item as! NSTreeNode
+            if treeNode.representedObject is ResourceGroup{
+                let resourceGroupOfItem = treeNode.representedObject as! ResourceGroup
+                return resourceGroupOfItem
+            }else{
+                return nil
+            }
+        }else{
+            return nil
+        }
+    }
+    
+    func regenerateSortIdx(_ resourceGroups: inout [ResourceGroup]){
+        var i:Int = -1
+        for resourceGroup in resourceGroups{
+            resourceGroup.setValue(self.getSortIdx(count: i), forKey: "idx")
+            i += 1
         }
     }
     
@@ -68,7 +105,11 @@ class ResourceMaintainViewController:NSViewController{
         newResourceGroup.setValue(valueObject.available, forKey: "available")
         
         if self.treeController.selectedObjects.count == 0{
-            let indexPath = IndexPath.init(index: self.content.count)
+            let rootLevelItemCount = self.content.count
+            let indexPath = IndexPath.init(index: rootLevelItemCount)
+            let sortIdx = self.getSortIdx(count: rootLevelItemCount)
+            newResourceGroup.setValue(sortIdx, forKey: "idx")
+            
             self.treeController.insert(newResourceGroup, atArrangedObjectIndexPath: indexPath)
         }else{
             let selectedObj = self.treeController.selectedObjects[0]
@@ -80,6 +121,8 @@ class ResourceMaintainViewController:NSViewController{
             }else{
                 childrenCount = 0
             }
+            let childrenSortIdx = self.getSortIdx(count: childrenCount)
+            newResourceGroup.setValue(childrenSortIdx, forKey: "idx")
             let indexPath = selectedIndexPath.appending(childrenCount)
             self.treeController.insert(newResourceGroup, atArrangedObjectIndexPath: indexPath)
         }

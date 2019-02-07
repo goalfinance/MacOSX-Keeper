@@ -11,7 +11,7 @@ import Cocoa
 let RESOURCE_GROUP_SAVED_VALUES_NAME = "name"
 let RESOURCE_GROUP_SAVED_VALUES_IS_VAILABLE = "vailable"
 
-class ResourceGroupEditViewController:NSViewController{
+class ResourceGroupEditViewController:NSViewController, NSControlTextEditingDelegate{
     @IBOutlet var nameField:NSTextField!
     @IBOutlet var yesRadioButton:NSButton!
     @IBOutlet var noRadioButton:NSButton!
@@ -63,7 +63,7 @@ class ResourceGroupEditViewController:NSViewController{
         self.isVailable = true
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         doneButton.isEnabled = doneAllowed()
     }
     

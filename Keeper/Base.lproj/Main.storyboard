@@ -975,6 +975,7 @@
                                                             <connections>
                                                                 <binding destination="Fce-hm-MBh" name="content" keyPath="arrangedObjects" id="gtx-ZH-L9k"/>
                                                                 <binding destination="Fce-hm-MBh" name="selectionIndexPaths" keyPath="selectionIndexPaths" previousBinding="gtx-ZH-L9k" id="fuF-Ve-LzT"/>
+                                                                <outlet property="dataSource" destination="VIQ-5U-g8x" id="p4E-ve-93w"/>
                                                                 <outlet property="delegate" destination="VIQ-5U-g8x" id="jSf-ac-gDS"/>
                                                             </connections>
                                                         </outlineView>
@@ -1160,7 +1161,7 @@
                 </viewController>
                 <customObject id="06H-Id-m79" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <arrayController mode="entity" entityName="Resource" id="Yv2-JK-S4X" userLabel="ResourceArrayController"/>
-                <treeController mode="entity" entityName="ResourceGroup" childrenKeyPath="children" id="Fce-hm-MBh" userLabel="ResourceGroupTreeController">
+                <treeController mode="entity" entityName="ResourceGroup" fetchPredicateFormat="" childrenKeyPath="children" id="Fce-hm-MBh" userLabel="ResourceGroupTreeController">
                     <connections>
                         <binding destination="VIQ-5U-g8x" name="contentArray" keyPath="content" id="W8a-PQ-FUZ"/>
                     </connections>

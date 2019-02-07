@@ -31,8 +31,8 @@ class OutlineViewController:NSViewController{
     
     func populateOutlineViewContents(){
         self.outlineView.isHidden = true
-        if let dictPath = Bundle.main.path(forResource: "FeatureDict", ofType: "dict"){
-            if let featureDict = NSDictionary.init(contentsOf: URL.init(fileURLWithPath: dictPath)){
+        if let dictPath = Bundle.main.url(forResource: "FeatureDict", withExtension: "dict"){
+            if let featureDict = NSDictionary.init(contentsOf: dictPath){
                 self.add(Entries: featureDict.value(forKey: KEY_ENTRIES) as! NSArray, DiscloseParent: true)
                 self.selectParentFromSelection()
             }
