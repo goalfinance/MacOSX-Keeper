@@ -11,7 +11,7 @@ import Cocoa
 let RESOURCE_GROUP_SAVED_VALUES_NAME = "name"
 let RESOURCE_GROUP_SAVED_VALUES_IS_VAILABLE = "vailable"
 
-class ResourceGroupEditViewController:NSViewController{
+class ResourceGroupEditViewController:NSViewController, NSControlTextEditingDelegate{
     @IBOutlet var nameField:NSTextField!
     @IBOutlet var yesRadioButton:NSButton!
     @IBOutlet var noRadioButton:NSButton!
@@ -41,20 +41,16 @@ class ResourceGroupEditViewController:NSViewController{
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        if let name = savedValues[RESOURCE_GROUP_SAVED_VALUES_NAME],
-            let available = savedValues[RESOURCE_GROUP_SAVED_VALUES_IS_VAILABLE]{
+        if let name = savedValues[RESOURCE_GROUP_SAVED_VALUES_NAME]{
             let resourceGroupName = name as! String
-            let resourceGroupAvailable = available as! Bool
-            if resourceGroupAvailable{
-                yesRadioButton.state = NSControl.StateValue.on
-                noRadioButton.state = NSControl.StateValue.off
-            }else{
-                yesRadioButton.state = NSControl.StateValue.off
-                noRadioButton.state = NSControl.StateValue.on
-            }
-            
             nameField.stringValue = resourceGroupName
         }
+        
+        if let available = savedValues[RESOURCE_GROUP_SAVED_VALUES_IS_VAILABLE]{
+            let resourceGroupAvailable = available as! Bool
+            self.isVailable = resourceGroupAvailable
+        }
+        
         doneButton.isEnabled = doneAllowed()
     }
     
@@ -64,12 +60,19 @@ class ResourceGroupEditViewController:NSViewController{
     
     func clearValues(){
         nameField.stringValue = ""
-        yesRadioButton.state = NSControl.StateValue.on
-        noRadioButton.state = NSControl.StateValue.off
+        self.isVailable = true
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         doneButton.isEnabled = doneAllowed()
+    }
+    
+    @IBAction func setAvailable(sender:NSButton){
+        if sender.tag == 1 {
+            self.isVailable = true
+        }else{
+            self.isVailable = false
+        }
     }
     
     @IBAction func done(sender:NSButton){

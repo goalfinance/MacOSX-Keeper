@@ -9,20 +9,7 @@
 import Cocoa
 
 extension ResourceMaintainViewController:NSOutlineViewDelegate{
-    func item2ResourceGroup(item:Any) -> ResourceGroup?{
-        if item is NSTreeNode{
-            let treeNode = item as! NSTreeNode
-            if treeNode.representedObject is ResourceGroup{
-                let resourceGroupOfItem = treeNode.representedObject as! ResourceGroup
-                return resourceGroupOfItem
-            }else{
-                return nil
-            }
-        }else{
-            return nil
-        }
-    }
-    
+
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
         return false
     }
@@ -37,7 +24,8 @@ extension ResourceMaintainViewController:NSOutlineViewDelegate{
             
             if let resourceGroup = self.item2ResourceGroup(item: item){
                 tableCellView?.textField?.stringValue = resourceGroup.value(forKey: "name") as! String
-                tableCellView?.imageView?.image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIconResource)))
+//                tableCellView?.imageView?.image = NSWorkspace.shared.icon(forFileType: NSFileTypeForHFSTypeCode(OSType(kGenericFolderIconResource)))
+                tableCellView?.imageView?.image = nil
                 
                 return tableCellView
             }else{
@@ -45,6 +33,28 @@ extension ResourceMaintainViewController:NSOutlineViewDelegate{
             }
         }else{
             return nil
+        }
+    }
+    
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        if treeController.selectedObjects.count > 0 {
+            self.resourceGroupEditableState()
+            
+            let selectedObj = treeController.selectedObjects[0]
+            let selectedResourceGroup = selectedObj as! ResourceGroup
+            if let resources = selectedResourceGroup.resources{
+                self.arrayController.content = resources
+                if resources.count > 0 {
+                    self.resourceEditableState()
+                }else{
+                    self.resourceInitialState()
+                }
+            }else{
+                self.arrayController.content = NSArray();
+                self.resourceInitialState()
+            }
+            
+        }else{
         }
     }
     

@@ -5,18 +5,18 @@
         <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" syncable="YES"/>
+        <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="resources" inverseEntity="ResourceGroup" syncable="YES"/>
     </entity>
     <entity name="ResourceGroup" representedClassName="ResourceGroup" syncable="YES" codeGenerationType="class">
         <attribute name="available" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="idx" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="parent" inverseEntity="ResourceGroup" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="parent" inverseEntity="ResourceGroup" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ResourceGroup" inverseName="children" inverseEntity="ResourceGroup" syncable="YES"/>
-        <relationship name="resources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" syncable="YES"/>
+        <relationship name="resources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Resource" inverseName="group" inverseEntity="Resource" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ResourceGroup" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="Resource" positionX="-54" positionY="9" width="128" height="120"/>
+        <element name="ResourceGroup" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
